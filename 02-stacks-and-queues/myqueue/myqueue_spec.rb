@@ -11,8 +11,8 @@ RSpec.describe MyQueue, type: Class do
       expect(q.head).to eq "Rob"
       expect(q.tail).to eq "Rob"
       q.enqueue("Ben")
-      expect(q.head).to eq "Ben"
-      expect(q.tail).to eq "Rob"
+      expect(q.head).to eq "Rob"
+      expect(q.tail).to eq "Ben"
     end
   end
 
@@ -29,8 +29,20 @@ RSpec.describe MyQueue, type: Class do
       expect(q.head).to eq "Rob"
       expect(q.tail).to eq "Rob"
       q.enqueue("Ben")
+      expect(q.head).to eq "Rob"
+      expect(q.tail).to eq "Ben"
+      q.dequeue()
       expect(q.head).to eq "Ben"
+      expect(q.tail).to eq "Ben"
+    end
+    it "returns the dequeued item" do
+      q.enqueue("Rob")
+      expect(q.head).to eq "Rob"
       expect(q.tail).to eq "Rob"
+      q.enqueue("Ben")
+      expect(q.head).to eq "Rob"
+      expect(q.tail).to eq "Ben"
+      expect(q.dequeue()).to eq "Rob"
     end
   end
 
