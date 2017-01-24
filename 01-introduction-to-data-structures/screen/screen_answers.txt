@@ -1,0 +1,12 @@
+How does your data structure allow developers to access and manipulate the data?
+  Developers can access the data by using the "at" method to retrieve the data at
+  each pixel of the screen matrix. They can create a new pixel object with their
+  desired color options and use the "insert" method to enter the pixel into the matrix.
+
+If a developer wanted to find a specific element in your data structure, how would you search for it?
+  A nested for loop could be used to first find the pixel with a matching 'x' value,
+  and then find the matching 'y' value in the second loop.
+
+What other real-world data can each structure represent?
+  A 2D array could be used to represent locations on a map, different rooms on each floor
+  of a building, or basically anything with rows and columns.
