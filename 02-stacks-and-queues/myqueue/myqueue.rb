@@ -25,7 +25,7 @@ class MyQueue
     @head = @queue[0]
     @tailCount -= 1
     if @tailCount < 0
-      # @head = nil
+      @head = nil
       @tail = nil
     else
       @tail = @queue[@tailCount]
