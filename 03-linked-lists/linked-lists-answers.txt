@@ -1,0 +1,18 @@
+
+1. Spatial locality refers to the physical location and addresses of memory being
+   in close proximity. Spatial locality offers more efficient memory access and predictability.
+
+2. Arrays are clearly better when accessing/deleting elements.
+
+"Array Creation"
+  0.010000   0.000000   0.010000 (  0.002858)
+"Node Creation"
+  0.000000   0.000000   0.000000 (  0.002972)
+"Array Access"
+  0.000000   0.000000   0.000000 (  0.000001)
+"Node Access"
+  0.000000   0.000000   0.000000 (  0.000305)
+"Array Delete"
+  0.000000   0.000000   0.000000 (  0.000003)
+"Node Delete"
+  0.000000   0.000000   0.000000 (  0.000300)
