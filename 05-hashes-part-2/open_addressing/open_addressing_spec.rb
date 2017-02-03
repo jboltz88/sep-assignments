@@ -13,6 +13,7 @@ RSpec.describe OpenAddressing, type: Class do
     star_wars_movies["Star Wars: A New Hope"] = "Number Four"
     star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
     star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
+    star_wars_movies.print_hash()
   end
 
   describe "#index" do
@@ -32,17 +33,17 @@ RSpec.describe OpenAddressing, type: Class do
   describe "#hash[key] = value" do
     it "does not resizes the array when a collision occurs and hash is not full" do
       hash = OpenAddressing.new(4)
-      hash["key"] = "value"
+      hash["key1"] = "value"
       expect(hash.size).to eq 4
-      hash["key"] = "second value"
+      hash["1key"] = "second value"
       expect(hash.size).to eq 4
     end
 
     it "resizes the array when a collision occurs and hash is full" do
       hash = OpenAddressing.new(1)
-      hash["key"] = "value"
+      hash["key1"] = "value"
       expect(hash.size).to eq 1
-      hash["key"] = "second value"
+      hash["1key"] = "second value"
       expect(hash.size).to eq 2
     end
 
