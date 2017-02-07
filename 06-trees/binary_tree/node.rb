@@ -4,12 +4,10 @@ class Node
   attr_accessor :left
   attr_accessor :right
   attr_accessor :parent
+  attr_accessor :checked
 
   def initialize(title, rating)
     @title = title
     @rating = rating
-    @right = nil
-    @left = nil
-    @parent = nil
   end
 end
