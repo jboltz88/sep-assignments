@@ -31,37 +31,19 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(node, target)
-    # check node
-    return node if node.title == target
-    #check for right child
-    if node.right != nil
-      find(node.right, target)
-    # check for left child
-    elsif node.left != nil
-      find(node.left, target)
-    # move back up the tree
+    if node == nil
+      return nil
+    elsif node.title == target
+      return node
     else
-      while node.parent != nil && (node.parent.left == nil || node.parent.left == node)
-        node = node.parent
-      end
-      # value not found
-      if node == @root
-        @root.checked += 1
-        if @root.checked == 1 && @root.left == nil && @root.right == nil
-          @root.checked = 0
-          return nil
-        end
-        if @root.checked == 2 && @root.left == nil
-          @root.checked = 0
-          return nil
-        end
-        if @root.checked == 3
-          @root.checked = 0
-          return nil
-        end
-      # continue the search
+      x = find(node.right, target)
+      y = find(node.left, target)
+      if x != nil
+        return x
+      elsif y != nil
+        return y
       else
-        find(node.parent.left, target)
+        return nil
       end
     end
   end
