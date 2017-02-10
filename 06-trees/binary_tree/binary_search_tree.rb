@@ -4,8 +4,6 @@ class BinarySearchTree
 
   def initialize(root)
     @root = root
-    @root.checked = 0
-    @movies = 0
   end
 
   def insert(root, node)
@@ -91,5 +89,19 @@ class BinarySearchTree
 
   # Recursive Breadth First Search
   def printf(children=nil)
+    if children == nil
+      children = [@root]
+    end
+    nextRow = []
+    children.each do |child|
+      puts "#{child.title}: #{child.rating}"
+      nextRow.push(child.left) if child.left != nil
+      nextRow.push(child.right) if child.right != nil
+    end
+    if nextRow.size == 0
+      return nil
+    else
+      printf(nextRow)
+    end
   end
 end
