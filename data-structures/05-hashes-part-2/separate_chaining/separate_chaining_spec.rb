@@ -31,9 +31,9 @@ RSpec.describe SeparateChaining, type: Class do
   describe "#hash[key] = value" do
     it "does not resize the array when a collision occurs and the values match" do
       hash = SeparateChaining.new(4)
-      hash["key"] = "value"
+      hash["key1"] = "value"
       expect(hash.size).to eq 4
-      hash["key"] = "second value"
+      hash["1key"] = "second value"
       expect(hash.size).to eq 4
     end
 
@@ -44,6 +44,7 @@ RSpec.describe SeparateChaining, type: Class do
       star_wars_movies["Star Wars: A New Hope"] = "Number Four"
       star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
       star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
+      star_wars_movies.print_hash()
 
       expect(star_wars_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
       expect(star_wars_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"
@@ -65,7 +66,7 @@ RSpec.describe SeparateChaining, type: Class do
 
       # Load factor should be .5 when two items are added
       expect(h.load_factor).to eq 0.5
-      h["keytwo"] = "value"
+      h["twokey"] = "value"
 
       # Load factor goes down to .375 (3/8) since when third item is added, load factor goes to .75
       # then the resize is triggered and load factor is recalculated

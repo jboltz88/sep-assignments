@@ -1,0 +1,35 @@
+Printout for open addressing:
+index: 2, Star Wars: The Empire Strikes Back: Number Five
+index: 3, Star Wars: Attack of the Clones: Number Two
+index: 4, Star Wars: A New Hope: Number Four
+index: 5, Star Wars: Return of the Jedi: Number Six
+index: 6, Star Wars: The Phantom Menace: Number One
+index: 11, Star Wars: Revenge of the Sith: Number Three
+load factor: 0.5
+
+Printout for separate chaining:
+index: 2
+Star Wars: The Empire Strikes Back: Number Five
+index: 3
+Star Wars: Return of the Jedi: Number Six
+Star Wars: Attack of the Clones: Number Two
+index: 4
+Star Wars: A New Hope: Number Four
+index: 6
+Star Wars: The Phantom Menace: Number One
+index: 11
+Star Wars: Revenge of the Sith: Number Three
+load factor: 0.5
+
+Three additional collision resolution strategies:
+1. Random hashing - uses a random number generator that is seeded by the key to help determine the index value,
+  if additional collisions occur, just use the next randomly generated value.
+2. Separate chaining with list head cells - similar to separate chaining with linked lists, but stores the first record
+  of each chain in the slot array itself in order to decrease pointer traversals by 1 for each bucket.
+3. Coalesced hashing - uses a similar technique as separate chaining, but instead of allocating new nodes for the linked
+  list, buckets in the actual table are used. The first empty bucket in the table at the time of a collision is designated
+  as the collision bucket which is linked to the originally targeted chain.
+
+  My own would be a modification of the linear probe. Instead of starting the search for an open bucket at the
+  intended index, I would have the search start at a randomly chosen index in the hash array with hopes of avoiding
+  prime clustering.

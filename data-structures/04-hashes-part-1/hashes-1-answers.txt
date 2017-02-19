@@ -1,0 +1,6 @@
+Doubling the size of the array claims more
+memory than is necessary for all the values in
+the hash. This diminishes the spatial locality
+offered by using an array to store the hash values.
+Reassigning each element to a new index is also not
+a very efficient process.

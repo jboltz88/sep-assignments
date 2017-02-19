@@ -1,0 +1,22 @@
+Based on my implementation, it's hard to tell when you would use
+a binary heap.
+
+Based on other resources, the time insertion for a binary
+heap should be faster on average. Binary heaps can also be efficiently
+implemented on top of arrays, so you wouldn't need 3 pointers per node
+like a binary search tree requires. The binary search tree is better for
+general searching; searching in a binary heap is only efficient for
+searching the max/min.
+
+inserting heap
+49.580000   0.740000  50.320000 ( 50.368673)
+searching element 5000 in heap
+  0.000000   0.000000   0.000000 (  0.005997)
+deleting a node
+  0.010000   0.000000   0.010000 (  0.010417)
+inserting binary search tree
+  0.080000   0.000000   0.080000 (  0.084064)
+searching element 5000 in binary search tree
+  0.010000   0.000000   0.010000 (  0.005579)
+deleting a node
+  0.000000   0.000000   0.000000 (  0.005373)
