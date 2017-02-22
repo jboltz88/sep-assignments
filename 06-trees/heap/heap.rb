@@ -49,14 +49,14 @@ class Heap
         # node's parent
         d = node.parent
         # node's children
-        l = node.left if node.left != nil
-        r = node.right if node.right != nil
+        l = node.left
+        r = node.right
 
         # temp var o if node's parent has another child
         if d.left == node
-          o = node.parent.right if d.right != nil
+          o = node.parent.right
         else
-          o = node.parent.left if d.left != nil
+          o = node.parent.left
         end
         if o != nil
           # connect node to node's parent's other child
@@ -90,12 +90,10 @@ class Heap
           g.right = node
         end
         # connect node to node's grandparent
-        if g != nil
-          node.parent = g
-        else
-          node.parent = nil
+        if g == nil
           @root = node
         end
+        node.parent = g
 
         order(node)
       end
@@ -162,6 +160,9 @@ class Heap
   end
 
   def lower(node)
+    if node.left == nil
+      return
+    end
     if node.left != nil && node.rating > node.left.rating && node.left.rating < node.right.rating
       swap = node.left
     elsif node.right != nil && node.rating > node.right.rating && node.right.rating < node.left.rating
@@ -169,7 +170,7 @@ class Heap
     else
       return
     end
-    sL = swap.left if swap.left != nil
+    sL = swap.left
     sR = swap.right if swap.right != nil
     if swap == node.left
       o = node.right if node.right != nil

@@ -29,19 +29,16 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(node, target)
-    if node == nil
+    if node.nil?
       return nil
     elsif node.title == target
       return node
     else
       x = find(node.right, target)
-      y = find(node.left, target)
       if x != nil
         return x
-      elsif y != nil
-        return y
       else
-        return nil
+        return find(node.left, target)
       end
     end
   end
@@ -49,105 +46,51 @@ class BinarySearchTree
   def delete(root, data)
     found = find(root, data)
     return nil if found == nil
-    # find highest child of left child to take deleted node's place
-    if found.left != nil
-      temp = found.left
-      until (temp.right != nil || temp.left == nil) do
-        temp = temp.left
-      end
-      # found a right node, now find the highest value right child
-      if temp.right != nil
-        until (temp.right == nil) do
-          temp = temp.right
-        end
-      end
-      # connect deleted node's parent to new child
-      if found != @root
-        if found.parent.right == found
-          found.parent.right = temp
+
+    unless found.left.nil? && found.right.nil?
+      if found.left.nil?
+        if found.parent.left == found
+          found.parent.left = found.right
         else
-          found.parent.left = temp
+          found.parent.right = found.right
         end
-      end
-      # take care of temp's old relationships
-      if temp.parent.left == temp
-        temp.parent.left = nil
-      else
-        temp.parent.right = nil
-      end
-      if temp.left != nil
-        temp.left.parent = temp.parent
-        temp.parent.right = temp.left
-      end
-      # connect deleted node's child(ren) to new parent
-      if found.left != temp
-        found.left.parent = temp if found.left != nil
-        temp.left = found.left
-      end
-      if found.right != nil
-        found.right.parent = temp
-        temp.right = found.right
-      end
-      # connect replacement node to new parent
-      if found == @root
-        temp.parent = nil
-        @root = temp
-      else
-        temp.parent = found.parent
-      end
-    # move right child to take deleted node's place if no left child
-    elsif found.right != nil
-      temp = found.right
-      # find lowest replacement node to take deleted node's place
-      until (temp.left != nil || temp.right == nil) do
-        temp = temp.right
-      end
-      # found a left node, now find the lowest value left child
-      if temp.left != nil
-        until (temp.left == nil) do
-          temp = temp.left
-        end
-      end
-      # connect deleted node's parent to new child
-      if found != @root
-        if found.parent.right == found
-          found.parent.right = temp
+
+        found.right.parent = found.parent
+      elsif found.right.nil?
+        if found.parent.left == found
+          found.parent.left = found.left
         else
-          found.parent.left = temp
+          found.parent.right = found.left
         end
-      end
-      # take care of temp's old relationships
-      if temp.parent.left == temp
-        temp.parent.left = nil
+
+        found.left.parent = found.parent
       else
-        temp.parent.right = nil
-      end
-      if temp.right != nil
-        temp.right.parent = temp.parent
-        temp.parent.left = temp.right
-      end
-      # connect deleted node's child(ren) to new parent
-      if found.right != temp
-        found.right.parent = temp if found.right != nil
-        temp.right = found.right
-      end
-      # connect replacement node to new parent
-      if found == @root
-        temp.parent = nil
-        @root = temp
-      else
-        temp.parent = found.parent
-      end
-    # no children to shift, just remove relation to parent
-    else
-      if found.parent.right == found
-        found.parent.right = nil
-      end
-      if found.parent.left == found
-        found.parent.left = nil
+        desired_node = found.left
+
+        until desired_node.right.nil?
+          desired_node = desired_node.right
+        end
+
+        desired_node.parent.left = desired_node.left
+
+        desired_node.left = found.left
+        desired_node.right = found.right
+        desired_node.parent = found.parent
+        found.left.parent = desired_node if !found.left.nil?
+        found.right.parent = desired_node if !found.right.nil?
+
+        if found.parent.left == found
+          found.parent.left = desired_node
+        else
+          found.parent.right = desired_node
+        end
       end
     end
-    # free memory for deleted node
+    if found.parent.left == found
+      found.parent.left = nil
+    else
+      found.parent.right = nil
+    end
     found = nil
   end
 
