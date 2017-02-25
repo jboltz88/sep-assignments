@@ -144,11 +144,14 @@ class Heap
         replacement.parent = nil
         @root = replacement
       end
-      replacement.left = found.left if found.left != nil
-      replacement.right = found.right if found.right != nil
-      found = nil
+      replacement.left = found.left
+      replacement.right = found.right
+      found.left.parent = replacement if !found.left.nil?
+      found.right.parent = replacement if !found.right.nil?
       order(replacement)
-      lower(replacement)
+      if (!replacement.left.nil? && replacement.rating > replacement.left.rating) || (!replacement.right.nil? && replacement.rating > replacement.right.rating)
+        lower(replacement)
+      end
     else
       if found.parent.left == found
         found.parent.left = nil
@@ -160,54 +163,45 @@ class Heap
   end
 
   def lower(node)
-    if node.left == nil
-      return
-    end
-    if node.left != nil && node.rating > node.left.rating && node.left.rating < node.right.rating
-      swap = node.left
-    elsif node.right != nil && node.rating > node.right.rating && node.right.rating < node.left.rating
-      swap = node.right
-    else
-      return
-    end
-    sL = swap.left
-    sR = swap.right if swap.right != nil
-    if swap == node.left
-      o = node.right if node.right != nil
-    else
-      o = node.left if node.left != nil
-    end
-    # connect swap to node's parent
-    if node.parent != nil
-      swap.parent = node.parent
-      # connect node's parent to swap
-      if node.parent.left == node
-        node.parent.left = swap
+    unless node.left.nil?
+      if node.right.nil? || node.left.rating < node.right.rating
+        swap = node.left
+        swap.left.parent = node if !swap.left.nil?
+        node.left = swap.left
+        swap.left = node
+        swap.right.parent = node if !swap.right.nil?
+        temp = node.right
+        node.right = swap.right
+        swap.right = temp
+        temp.parent = swap
       else
-        node.parent.right = swap
+        swap = node.right
+        temp = node.left
+        swap.left.parent = node
+        swap.right.parent = node
+        node.right = swap.right
+        node.left.parent = swap
+        node.left = swap.left
+        swap.left = temp
+        swap.right = node
       end
-    else
-      swap.parent = nil
-      @root = swap
-    end
-    # connect node and node's other child to swap
-    node.parent = swap
-    o.parent = swap if o != nil
-    # connect swap to node and node's other child
-    if node.left == swap
-      swap.left = node
-      swap.right = o
-    else
-      swap.right = node
-      swap.left = o
-    end
-    # connect swaps old children to node
-    node.left = sL
-    node.right = sR
-    sL.parent = node if sL != nil
-    sR.parent = node if sR != nil
 
-    lower(node)
+      unless node.parent.nil?
+        if node.parent.left == node
+          node.parent.left = swap
+        else
+          node.parent.right = swap
+        end
+      else
+        @root = swap
+      end
+      swap.parent = node.parent
+      node.parent = swap
+
+      if (!node.left.nil? && node.rating > node.left.rating) || (!node.right.nil? && node.rating > node.right.rating)
+        lower(node)
+      end
+    end
   end
 
 
