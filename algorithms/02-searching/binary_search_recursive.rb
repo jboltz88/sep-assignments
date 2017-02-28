@@ -17,7 +17,7 @@ def binary_search(collection, value)
 end
 
 arr = []
-(0...10).each do |x|
+(0...1000).each do |x|
   arr.push(x)
 end
 puts binary_search(arr, 3)
