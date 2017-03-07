@@ -1,6 +1,6 @@
 def heap_sort(arr)
 	# heapify
-	(1..arr.length - 1) do |i|
+	(1..arr.length - 1).each do |i|
 		# move up element to establish max heap
 		child = i
 		while child > 0
@@ -46,6 +46,8 @@ def heap_sort(arr)
 			end
 		end
 	end
+
+	arr
 end
 
 arr = [1, 9, 3, 8, 7, 2, 6, 4, 5]
