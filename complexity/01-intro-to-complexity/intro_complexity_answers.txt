@@ -1,0 +1,31 @@
+1. O(1) is like a hockey puck moving across ice at a constant speed no matter
+   the distance it travels, and O(2^n) is like a snowball rolling uphill while
+   accumulating mass on the way up.
+
+2. Best case for binary search is that the item we're searching for is always the
+  median value of the collection.
+
+3. Worst case for binary search is that the item we're searching for is always
+  at either end of the collection.
+
+4. The bounded case for binary search is that the item we're searching for is
+  either the median value, the value at either end of the collection, or somewhere
+  in between.
+
+5. see pdf
+
+6. +Infinity
+
+7. O(2^n)
+
+8. def find_iterations(n)
+     return 2**n
+   end
+
+9. see pdf
+
+10. O(n)
+
+11. Ω(1)
+
+12. Ө(logn)
