@@ -1,0 +1,13 @@
+1. The first loop to combine arrays gives us a time of n, but
+   then the nested loops that put each element from the combined
+   array into the sorted array give n^2. Therefore, n + n^2 gives
+   us time of O(n^2).
+
+2. Merge sort gives us time of O(n log n). We recursively divide the
+   array into halves, which gives log n time, then the merging gives us
+   n time. Therefore, n * log n gives O(n log n).
+
+
+3. Bubble sort gives us space of O(1). We don't have to create any
+   additional arrays, we just combine all the arrays and sort that
+   combined array.
