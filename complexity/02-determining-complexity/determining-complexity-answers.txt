@@ -1,0 +1,28 @@
+1. O(1)
+   No matter what, the algorithm will only run once in order to output the
+   value of 'n' that was passed in.
+
+2. O(n)
+   The algorithm will have to run an iteration for each element of the collection
+   which is in 'n' time, but each iteration will run in constant time, so C * n.
+
+3. O(n^2)
+   The algorithm will run in 'n' time for looping through each element of
+   collection, and then run in 'n' time for each sub array. The n*n gives us
+   n^2 time.
+
+4. O(2^n)
+   Given an 'n', t(n) = t(n-1) + t(n-2) = (t(n-2) + t(n-3)) + (t(n-3) + t(n-4)).
+   Each additional increment to 'n' gives you another power of 2.
+
+5. O(n)
+   The algorithm must run 'n' number of iterations, but each iteration runs in
+   constant time.
+
+6. O(n^2)
+   The while loop is O(n), and recursive partitioning calls only reduce the size
+   of n by 1 in the worst case. Each additional recursive call adds C(n-1),
+   which turns into C(n + (n-1) + (n-2) + ...)
+
+   This can be reduced to c((n+1)(n/2)−1), and when you remove constants and
+   coefficients, it becomes n^2.
